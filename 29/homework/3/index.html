@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <title>Just a Page</title>
+    <script>
+    window.onload = function() {
+    	var btn = document.getElementById('btn');
+    	var container = document.getElementById('output');
+    	function makeRequest(data) {
+    		var xhr = new XMLHttpRequest(data);
+    		xhr.open('POST', 'test');
+    		xhr.onload = function() {
+    				container.innerHTML += this.responseText;
+    		};
+    		xhr.onerror = function() {
+    				console.log('error!');
+    		};
+    		xhr.send(data);
+    	};
+    	btn.addEventListener('click', () => {
+    	    var data = document.getElementById('data').value;
+    	    if (data) { makeRequest(data) }
+    	    else {
+                alert('pls enter the data')
+    	    }   	    
+    	});
+    };
+    </script>
+</head>
+<body>
+    <input type="text" id="data" placeholder="Enter the data" />
+    <button class="btn-lg btn btn-success" id="btn">Send POST request</button>
+    <div id="output"></div>
+</body>
+</html>
