@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <title></title>
+    <script>
+        window.onload = function () {
+            var users = [
+            { name: 'Jane', age: 23 }, { name: 'John', age: 30 }, { name: 'Vasya', age: 25 },
+            { name: 'Yvonne', age: 34 }, { name: 'Will', age: 18 }, { name: 'Jack', age: 26 }
+             ];
+            var container = document.getElementById('container');
+            function makeRequest(id) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/users/' + id);
+            xhr.onload = function () {
+                container.innerHTML = this.responseText + '<br />';
+            };
+            xhr.send();
+            }
+        
+       
+            var ul = document.getElementsByTagName('ul')[0];
+            users.map(function(user, id) {
+                var li = document.createElement('li');
+                li.innerHTML = user.name;
+                li.dataset.id = id;
+                ul.appendChild(li);
+            });
+            ul.onclick = function(e) {
+                if (e.target.tagName != 'LI') {
+                    return;
+                }
+                makeRequest(e.target.dataset.id);
+            };
+           
+        }
+    </script>
+</head>
+<body>
+   <ul></ul>
+    <div id="container"></div>
+</body>
+</html>
