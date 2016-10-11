@@ -10,7 +10,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>00c5dea1-8e12-41c8-9b2d-910c6365e563</ProjectGuid>
+    <ProjectGuid>3244fa80-0699-43c9-9791-3586dca78ddf</ProjectGuid>
     <ProjectHome>.</ProjectHome>
     <StartupFile>server.js</StartupFile>
     <SearchPath>
@@ -30,7 +30,11 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="password_handler.js" />
     <Compile Include="server.js" />
+    <Compile Include="sessionHandler.js" />
+    <Compile Include="signUpHandler.js" />
+    <Content Include="index.html" />
     <Content Include="package.json" />
     <Content Include="README.md" />
   </ItemGroup>
@@ -38,12 +42,16 @@
     <Folder Include="typings\" />
     <Folder Include="typings\globals\" />
     <Folder Include="typings\globals\body-parser\" />
+    <Folder Include="typings\globals\cookie-parser\" />
+    <Folder Include="typings\globals\express-session\" />
     <Folder Include="typings\globals\express\" />
     <Folder Include="typings\globals\mysql\" />
     <Folder Include="typings\globals\node\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="typings\globals\body-parser\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\cookie-parser\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\express-session\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\express\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\mysql\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\node\index.d.ts" />
