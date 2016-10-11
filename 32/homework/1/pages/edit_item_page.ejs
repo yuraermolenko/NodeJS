@@ -1,0 +1,50 @@
+
+<!DOCTYPE html> 
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /> 
+<script>
+	window.onload = function() {
+		var btn = document.getElementsByClassName('btn')[0]; 
+
+		btn.addEventListener('click', function() {  
+			var name=document.getElementById('name').value;
+			var info= document.getElementById('info').value;
+			if (name===''||info==="") {
+			alert('put some data into input fields!')
+				return;
+			}
+			else{
+		    var xhr = new XMLHttpRequest(); 
+			xhr.open('PUT', '/edit'); 
+
+			var data = {
+				name: name,
+				info: info,
+				id: this.id
+			}
+			xhr.onload = function() {
+					window.location = this.responseText;
+				};
+			xhr.setRequestHeader('Content-Type', 'application/json'); 
+			xhr.send(JSON.stringify(data)) }
+		})
+	}
+</script>
+</head>
+<body>
+<div class="panel well">
+    <h3>Edit item!</h3>
+    <div class="form-group">
+        <label>Name: <input id="name" type="text" class="form-control" value="<%= name %>" /></label> 
+    </div>
+    <div class="form-group">
+        <label>Info: <input id="info" type="text" class="form-control" value="<%= info %>" /></label>
+    </div>
+    
+    <div class="form-group">
+        <a class="btn btn-lg btn-info" href="/edit" id="<%= id %>">Apply</a>       
+    </div>
+</div> 
+</body> 
+</html> 

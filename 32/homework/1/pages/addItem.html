@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <title></title>
+    <script>
+		window.onload = function() {
+			function makeRequest() {
+				var name = document.getElementById("name").value;
+				var info = document.getElementById("info").value;			
+				if (name === '' || info === '') {
+                    alert('pls enter some data to input fields')
+					return;
+				}
+				var xhr = new XMLHttpRequest();
+				xhr.open('POST', '/addItem');
+				xhr.setRequestHeader('Content-Type', 'application/json');
+				xhr.onload = function() {
+				    window.location = '/';
+				};
+				var jsonData = JSON.stringify({
+					name: name,
+					info: info
+				});
+				xhr.send(jsonData);
+			}
+			var btn = document.getElementById('btn');
+			btn.onclick = makeRequest;
+		}
+    </script>
+</head>
+<body>
+    <input type="text" id="name" placeholder="Name" />
+    <input type="text" id="info" placeholder="Info" />
+    <input type="button" value="Add Item!" id="btn" />
+</body>
+</html>

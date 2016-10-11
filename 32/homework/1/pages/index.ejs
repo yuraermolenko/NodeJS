@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <title>App</title>
+</head>
+<script>
+		window.onload=()=>{
+				var edit=document.getElementById("edit");
+				var deleteBtn=document.getElementById("delete");
+				edit.onclick=()=>{
+				var id=document.getElementById("select-item").value;
+				if (id=="") {
+					alert('Enter item ID!')
+					return;
+				 }
+				var xhr = new XMLHttpRequest();
+				xhr.open('GET', 'check/' + id);
+				xhr.onload = function() {
+					window.location = this.responseText;
+				}
+				xhr.send();
+
+
+				}
+			}
+		
+</script>
+<body>
+    <div class="panel panel-primary">
+        <h1>Test List</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Info</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <%- data %>
+            </tbody>
+        </table>
+    </div>
+	<a href="addItem" class="btn btn-lg btn-info">Add item!</a> 
+	<input type="text" placeholder="Enter item ID" id="select-item"/>
+	<a id="edit" class="btn btn-default">Edit Item</a>
+	<a id="delete" class="btn btn-default">Delete Item</a>
+</body>
+</html>
