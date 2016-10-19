@@ -65,11 +65,7 @@ app.post('/login', function(req, res) {
     res.end();
     console.log(req.session.isLoggedIn);
 });
-app.get('/edit/:id', (req, res) => {
-    console.log(req.session.isLoggedIn);
-   /* if (req.session.isLoggedIn) {*/ editHandler.showEditPage(req, res)/*}*/
-    //else { res.redirect('/home') }
-});
+app.get('/edit/:id',editHandler.showEditPage);
 app.put('/upload/:id', editHandler.uploadItem);
 app.get('/new', (req, res) => { res.render(path.join(__dirname, 'pages/add.ejs')); });
 app.delete('/delete/:id', editHandler.removeItem);
